@@ -1,0 +1,42 @@
+name: NativeIOSApp
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+  postGenCommand: pod install
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    # Required so the CocoaPods "Embed Pods Frameworks" phase can run.
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  NativeIOSApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: NativeIOSApp
+        excludes:
+          - Info.plist
+    info:
+      path: NativeIOSApp/Info.plist
+      properties:
+        CFBundleDisplayName: native_ios_app
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.nativeIosApp
+        TARGETED_DEVICE_FAMILY: "1,2"

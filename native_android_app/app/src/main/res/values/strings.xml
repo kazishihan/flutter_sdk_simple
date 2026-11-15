@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">native_android_app</string>
+    <string name="demo_user_id">12345</string>
+
+    <string name="hint_message">Message to send to Flutter</string>
+    <string name="action_initialize">Initialize SDK</string>
+    <string name="action_open">Open Flutter</string>
+    <string name="action_send">Send data to Flutter</string>
+    <string name="action_read_stored">Read value saved by Flutter</string>
+    <string name="action_toggle_language">Switch language (en / bn)</string>
+    <string name="action_dispose">Dispose SDK</string>
+
+    <string name="status_not_initialized">SDK: not initialized</string>
+    <string name="status_waiting">SDK: engine started, waiting for Flutter</string>
+    <string name="status_ready">SDK: ready</string>
+    <string name="status_closed">SDK: Flutter screen closed</string>
+
+    <string name="log_initialized">Initialized (%1$s, user %2$s, lang %3$s)</string>
+    <string name="log_ready">Flutter is ready</string>
+    <string name="log_event">Event from Flutter: %1$s %2$s</string>
+    <string name="log_closed">Flutter screen closed</string>
+    <string name="log_error">Error [%1$s]: %2$s</string>
+    <string name="log_sent">Sent to Flutter: %1$s</string>
+    <string name="log_stored">Stored value for \'%1$s\': %2$s</string>
+    <string name="log_stored_none">no value stored yet</string>
+    <string name="log_language">Language set to %1$s</string>
+    <string name="log_disposed">SDK disposed</string>
+
+    <string name="stored_key">userName</string>
+</resources>

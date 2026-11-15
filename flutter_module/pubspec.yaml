@@ -1,0 +1,30 @@
+name: flutter_module
+description: "Flutter module embedded in the native Android and iOS SDKs."
+
+# Used only by the generated standalone Runner (`flutter run`); it has no
+# effect on the native host apps.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Identifies this project as a module to embed in native host apps. The
+  # Android package decides the AAR coordinates (com.example.flutter_module),
+  # so do not change these after the SDK has been published.
+  module:
+    androidX: true
+    androidPackage: com.example.flutter_module
+    iosBundleIdentifier: com.example.flutterModule
