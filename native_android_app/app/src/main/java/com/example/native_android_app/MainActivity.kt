@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    /** Initializes edge-to-edge host UI, Flutter event listener, and button click handlers. */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,11 +45,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /** Detaches the UI event listener to avoid leaking the Activity. */
     override fun onDestroy() {
         FlutterHost.onEvent = null
         super.onDestroy()
     }
 
+    /** Appends a line to the on-screen Activity Log. */
     private fun log(line: String) {
         binding.tvLog.append(line + "\n")
     }

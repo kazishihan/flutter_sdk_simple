@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'second_screen.dart';
+
 /// One channel, shared with the Android and iOS host apps.
 ///
 /// Dart -> host
@@ -56,6 +58,29 @@ Future<bool> _sendEvent(String name, Map<String, dynamic> payload) async {
   }
 }
 
+Future<PaymentResult?> _openPayment(String phoneNumber) async {
+  try {
+    final map = await _channel.invokeMapMethod<String, dynamic>(
+      'openPayment',
+      {'phoneNumber': phoneNumber},
+    );
+    if (map == null) return null;
+    final status = map['status']?.toString();
+    if (status != 'success' && status != 'failed' && status != 'cancelled') {
+      return null;
+    }
+    return PaymentResult(
+      status: status!,
+      phoneNumber: map['phoneNumber']?.toString() ?? phoneNumber,
+    );
+  } on MissingPluginException {
+    return null;
+  } on PlatformException catch (e) {
+    debugPrint('openPayment failed: ${e.code}');
+    return null;
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -86,6 +111,19 @@ class _HomeScreenState extends State<HomeScreen> {
     final ok = await _sendEvent('button_tapped', {'userName': _name.text});
     if (!mounted) return;
     setState(() => _status = ok ? 'Event sent to host' : 'No host attached');
+  }
+
+  void _openSecondScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => SecondScreen(
+          config: _config,
+          hostMessage: _hostMessage,
+          onSendEvent: _sendEvent,
+          onOpenPayment: _openPayment,
+        ),
+      ),
+    );
   }
 
   @override
@@ -130,6 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 8),
             Text(_status, textAlign: TextAlign.center),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _openSecondScreen,
+              child: const Text('Go to second screen'),
+            ),
             const SizedBox(height: 16),
             OutlinedButton(
               onPressed: SystemNavigator.pop,

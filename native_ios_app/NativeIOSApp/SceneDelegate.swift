@@ -4,6 +4,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    /// Creates the main window and sets HostViewController as its root.
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
