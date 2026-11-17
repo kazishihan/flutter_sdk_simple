@@ -1,7 +1,7 @@
 # Flutter in native apps: the simple version
 
-This is the plain, official Flutter add-to-app approach. There is **no wrapper SDK**:
-each native app uses Flutter's own classes directly, with one small helper file
+This is the plain, official Flutter add-to-app approach.
+Each native app uses Flutter's own classes directly, with one small helper file
 (`FlutterHost`) that holds the engine and the channel.
 
 ```
@@ -62,7 +62,7 @@ open NativeIOSApp.xcworkspace
 Run on a simulator from Xcode. A Debug build cannot be launched from the home screen
 (a Flutter restriction); use a Release build on a real device for that.
 
-## Using this in your own app
+## Using this in you own Native Android or IOS app
 
 Android: add the two Maven repositories from `settings.gradle.kts`, add
 `implementation("com.example.flutter_module:flutter_release:1.0")`, add the
@@ -70,7 +70,7 @@ Android: add the two Maven repositories from `settings.gradle.kts`, add
 
 iOS: use the Podfile as a template (`install_all_flutter_pods`) and copy `FlutterHost.swift`.
 
-## Sharing with another team
+## Sharing with another team or vendor
 
 - **Android:** send them the folder `flutter_module/build/host/outputs/repo`
   (the whole folder, not only the `.aar`) and the three steps above.
